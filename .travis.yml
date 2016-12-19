@@ -1,16 +1,28 @@
 language: java
+
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+    - oracle-java8-installer
+
+deploy:
+  provider: releases
+  api_key:
+    secure: R6YdJKXGzK0KKrq5Khg/UM/2MiCe5VCeeLJydAc296Jx51slJTRv1UawtraAxwsmWnIS37H6qgTVtbLivdKe6Cvne3Nk4mfjO4/yC0ExQVu1TafqqFn5sYaDs32NF9z7HQmYgpv7dOaXPJ/sO3bNMnceTtKBIX5HcAtfo/SHZdw1CPGc5WIvFWC+b5Z0TbgTdGfBNdmbjkNjGaLHuVuCmXItGeSlfcPVAWGQ+uLBllZAE9j0rDd0ZZ9+x9ZVBLjgZtBC5Ehdsvl2bJkMkteERaq4t+yLmXsVNCzhHMnS3o1u7jXCka0e9aXBWPlPzxk49q8ECLzVjMT8yxH2ZRPhaNT0xz7qoKZv3hbicdyA5z3sbsXVgpM4uPNVqdhWGd8sp25aVpECFmptGpctlv/BPdxLpnu0AIqU1J6GyvK2NJ5rNtPJ3yhVlz32B0waCXzS8GvfeQcGeTRBJtNKKy1t4BBRVgqmqIWFll7+hQQtiq5IxW0ron4AOqFIJ4bybNhOwuootBCIzytPxMRJtEASswBrZP24roRUAsjB8omuejIXDZn9Rx5tckWpUI1Jam0TwVIhcavFGm5QEQTkNkpCF3zGBm1VC+K274SXEFR+DKAcP6V6DpWEdP7Tv9OAtfdd/4KEGHVZqCnT2Q3/n5lqVSiaiNaQ0qLkNW6nALES1Iw=
+  file_glob: true
+  file: "*/build/libs/*.jar"
+  on:
+    repo: wpilibsuite/SmartDashboard-Extensions
+    tags: true
 
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
