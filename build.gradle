@@ -1,0 +1,38 @@
+plugins {
+    id 'edu.wpi.first.wpilib.versioning.WPILibVersioningPlugin' version '1.5.1'
+    id 'idea'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "edu.wpi.first.wpilib:SmartDashboard:+"
+    }
+
+    WPILibVersion {
+        generateVersion = false
+    }
+
+    // Ensure that the WPILibVersioningPlugin is setup by setting the release type, if releaseType wasn't
+    // already specified on the command line
+    if (!hasProperty('releaseType')) {
+        WPILibVersion {
+            releaseType = 'dev'
+        }
+    }
+
+}
+
+task copyJars(type: Copy) {
+    from subprojects.collect { it.tasks.withType(Jar) }
+    into new File(System.getProperty("user.home"), "SmartDashboard/extensions")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+}
