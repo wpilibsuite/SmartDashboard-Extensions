@@ -34,5 +34,5 @@ task copyJars(type: Copy) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.2.1'
+    gradleVersion = '4.0.1'
 }
